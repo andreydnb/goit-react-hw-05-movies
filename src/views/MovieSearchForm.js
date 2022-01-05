@@ -1,7 +1,7 @@
 import { fetchMovieByQuery } from "../service/service";
 import { useEffect, useState } from 'react';
 import './MovieSearchForm.css';
-import { ListofMoviesSearch } from '../components/ListOfMoviesSearch/ListOfMoviesSearch';
+import { ListOfMoviesSearch } from '../components/ListOfMoviesSearch/ListOfMoviesSearch';
 import { loadingStatus } from "../utils/loadingStatus";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
@@ -37,7 +37,7 @@ function MoviesSearchForm({ saveQuery, queryApp, changePage }) {
                 }
             });
         }
-    }, [query, saveQury]);
+    }, [query, saveQuery]);
 
     return (
         <>
@@ -48,7 +48,7 @@ function MoviesSearchForm({ saveQuery, queryApp, changePage }) {
                     <Loader className="loaderMovies" />
                 )}
                 {loadStatus === loadingStatus.RESOLVED && (
-                    <ListofMoviesSearch
+                    <ListOfMoviesSearch
                         results={results}
                         query={query}
                         pageForCard={changePage}

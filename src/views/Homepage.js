@@ -5,17 +5,17 @@ import { useState, useEffect } from "react";
 import { loadingStatus } from "../utils/loadingStatus";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-import s from "./Homepage.module.css";
+import s from "./HomePage.module.css";
 import { ListOfMoviesHomePage } from "../components/ListOfMoviesHomePage/ListOfMoviesHomePage";
 
 function Homepage({ changePage }) {
     const [movies, setmovies] = useState(null);
-    const [loadStatus, setloadStatus] = useStat(loadingStatus.IDLE);
+    const [loadStatus, setLoadStatus] = useState(loadingStatus.IDLE);
     useEffect(() => {
         setLoadStatus(loadingStatus.PENDING);
         fetchTranding().then((movies) => {
             setmovies(movies);
-            setloadStatus(loadingStatus.RESOLVED);
+            setLoadStatus(loadingStatus.RESOLVED);
         });
     }, []);
 

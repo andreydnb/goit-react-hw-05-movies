@@ -1,4 +1,3 @@
-import { set } from 'husky';
 import { useState } from 'react';
 function MovieFormOnly({ handleFormSubmit }) {
     const [query, setQuery] = useState("");

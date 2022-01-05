@@ -22,6 +22,9 @@ function ListOfMoviesSearch({ results, query, pageForCard }) {
                                         pathname: `${url}/${makeSlug(
                                             `${movie.title} ${movie.id}`,
                                         )}`,
+                                        state: {
+                                            from: location,
+                                        }
                                     }}
                                     onClick={changePageOfSearch}
                                 >

@@ -1,25 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import  Container  from './components/Container/Container';
+import Appbar from './components/Appbar/Appbar';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { Homepage } from './views/Homepage';
+import { useState } from 'react';
+import { MoviesSearchForm } from './views/MovieSearchForm';
+import { MovieCardView } from './views/MovieCardView';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(null);
+
+  const pageForCard = name => {
+    setPage(name);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container>
+        <Appbar clearQuery={setQuery} />
+        <Switch>
+          <Route exact path="/">
+            <Homepage changePage={pageForCard} />
+          </Route>
+          <Route exact path="/movies">
+            <MoviesSearchForm
+              saveQuery={setQuery}
+              queryApp={query}
+              changePage={pageForCard}
+            />
+          </Route>
+
+          <Route path="/movies/:slug">
+            <MovieCardView
+              query={query}
+              saveQuery={setQuery}
+              currentPage={page}
+            />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </Container>
+      <Footer />
+    </>
   );
 }
+
 
 export default App;
